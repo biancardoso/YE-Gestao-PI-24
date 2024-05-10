@@ -6,6 +6,12 @@
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
 	<string>Flutter Application 1</string>
+
+	<key>NSCameraUsageDescription</key>
+	<string>Use the camera to capture images.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Access photo library to save images.</string>
+
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>

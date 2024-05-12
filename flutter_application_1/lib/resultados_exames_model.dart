@@ -1,9 +1,8 @@
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
-import 'cadastrar_exame.dart' show ResultadosExamesWidget;
+import 'resultados_exames.dart' show ResultadosExamesWidget;
 import 'package:flutter/material.dart';
-
 
 class ResultadosExamesModel extends FlutterFlowModel<ResultadosExamesWidget> {
   ///  State fields for stateful widgets in this page.

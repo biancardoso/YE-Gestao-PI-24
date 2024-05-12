@@ -1,13 +1,11 @@
-import '/flutter_flow/flutter_flow_icon_button.dart';
-import '/flutter_flow/flutter_flow_theme.dart';
-import '/flutter_flow/flutter_flow_util.dart';
-import '/flutter_flow/flutter_flow_widgets.dart';
-import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
-import 'package:provider/provider.dart';
 
-import 'tela_exames_model.dart';
-export 'tela_exames_model.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_application_1/tela_exames_model.dart';
+import 'package:flutter_application_1/resultados_exames.dart';
+import 'package:flutterflow_ui/flutterflow_ui.dart';
+
+
+
 
 class TelaExamesWidget extends StatefulWidget {
   const TelaExamesWidget({super.key});
@@ -64,7 +62,7 @@ class _TelaExamesWidgetState extends State<TelaExamesWidget> {
             child: Padding(
               padding: EdgeInsetsDirectional.fromSTEB(0, 0, 20, 0),
               child: Text(
-                'HistÃ³rico de Exames',
+                'Histórico de Exames',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Montserrat',
                       color: Colors.white,
@@ -124,9 +122,9 @@ class _TelaExamesWidgetState extends State<TelaExamesWidget> {
                               color: FlutterFlowTheme.of(context).primaryText,
                               size: 24,
                             ),
-                            onPressed: () async {
-                              context.pushNamed('null');
-                            },
+                            // onPressed: () async {
+                            //   context.pushNamed('null');
+                            // },
                           ),
                         ),
                       ),

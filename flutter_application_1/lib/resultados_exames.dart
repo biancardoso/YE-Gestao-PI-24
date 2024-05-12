@@ -1,6 +1,11 @@
+
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/model_cadastrar_exame.dart';
+import 'package:flutter_application_1/resultados_exames_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
+
+import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'dart:io';
+import 'package:path_provider/path_provider.dart';
 
 
 class ResultadosExamesWidget extends StatefulWidget {
@@ -10,10 +15,21 @@ class ResultadosExamesWidget extends StatefulWidget {
   State<ResultadosExamesWidget> createState() => _ResultadosExamesWidgetState();
 }
 
+// classe para armazenar os laudos/documentos
+// class _scannedDocuments {
+//   List<File> documents = [];
+
+//   void addDocument(File document) {
+//     documents.add(document);
+//   }
+// }
+
 class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
   late ResultadosExamesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
+  List<File>? images;
+  // late final _scannedDocuments = ScannedDocuments();
 
   @override
   void initState() {
@@ -36,6 +52,93 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
 
     super.dispose();
   }
+
+  // Future<void> captureAndConvertToPdf() async {
+  //   try {
+  //     // Abrir a câmera para capturar a foto
+  //     final path = await Navigator.of(context).push(
+  //       MaterialPageRoute(
+  //         builder: (_) => CunningDocumentScanner(),
+  //       ),
+  //     );
+
+  //     if (path != null) {
+  //       // Converter a foto em PDF
+  //       final tempDir = await getTemporaryDirectory();
+  //       final filePath = '${tempDir.path}/resultados_exame.pdf';
+  //       await convertImagesToPdf([path], filePath);
+
+  //       // Faça o que quiser com o arquivo PDF
+  //       print('PDF gerado em: $filePath');
+  //     }
+  //   } catch (e) {
+  //     print('Erro ao capturar e converter para PDF: $e');
+  //   }
+  // }
+
+
+//     Future<void> _scanDocument() async {
+//   final imagesPath = await CunningDocumentScanner.getPictures();
+//   if (imagesPath != null) {
+//     List<File> images = imagesPath.map((path) => File(path)).toList();
+//     setState(() {
+//       _scannedImages = images;
+//     });
+//   } else {
+//     // Tratar o caso em que imagesPath é nulo, se necessário
+//   }
+// }
+
+//   Future<void> _createPdf() async {
+//     // Implementação para criar o PDF a partir das imagens
+//   }
+
+//   @override
+//   Widget build(BuildContext context) {
+//     return Scaffold(
+//       appBar: AppBar(
+//         title: Text('Scanner'),
+//       ),
+//       body: Column(
+//         mainAxisAlignment: MainAxisAlignment.center,
+//         crossAxisAlignment: CrossAxisAlignment.stretch,
+//         children: <Widget>[
+//           ElevatedButton(
+//             onPressed: _scanDocument,
+//             child: Text('Scan Document'),
+//           ),
+//           if (_scannedImages.isNotEmpty) ...[
+//             Expanded(
+//               child: ListView.builder(
+//                 itemCount: _scannedImages.length,
+//                 itemBuilder: (context, index) {
+//                   return Image.file(_scannedImages[index]);
+//                 },
+//               ),
+//             ),
+//             ElevatedButton(
+//               onPressed: _createPdf,
+//               child: Text('Create PDF'),
+//             ),
+//           ],
+//         ],
+//       ),
+//     );
+//   }
+// }
+  
+  Future<void> _scanDocument() async {
+    final imagesPath = await CunningDocumentScanner.getPictures();
+    if (imagesPath != null) {
+      setState(() {
+        images = imagesPath.map((path) => File(path)).toList();
+      });
+    } else {
+      // Tratar o caso em que imagesPath é nulo, se necessário
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -286,13 +389,12 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
                       ),
                 ),
               ),
+              (images!=null)?Container(height: 50, width: 50, child: Image.file(images![0])):
               Align(
                 alignment: AlignmentDirectional(0, 0),
                 child: FFButtonWidget(
-                  onPressed: () {
-                    print('Button pressed ...');
-                  },
-                  text: 'Adicionar laudo do exame',
+                  onPressed:_scanDocument,
+                   text: 'Adicionar laudo do exame',
                   options: FFButtonOptions(
                     width: 350,
                     height: 40,

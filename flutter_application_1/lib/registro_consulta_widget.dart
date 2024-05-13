@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/detalhes_consulta.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -51,9 +52,9 @@ class _RegistroConsultaWidgetState extends State<RegistroConsultaWidget> {
               color: FlutterFlowTheme.of(context).secondaryBackground,
               size: 24,
             ),
-            onPressed: () async {
-              context.pushNamed('homepage');
-            },
+            // onPressed: () async {
+            //   context.pushNamed('homepage'); adicionar a home depois!!
+            // },
           ),
           title: Column(
             mainAxisSize: MainAxisSize.max,
@@ -86,7 +87,7 @@ class _RegistroConsultaWidgetState extends State<RegistroConsultaWidget> {
                 size: 24,
               ),
               onPressed: () async {
-                context.pushNamed('detalhes_consulta');
+                Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesConsultaWidget()));
               },
             ),
           ],
@@ -186,7 +187,7 @@ class _RegistroConsultaWidgetState extends State<RegistroConsultaWidget> {
                 alignment: AlignmentDirectional(0.01, 0.78),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    context.pushNamed('detalhes_consulta');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => DetalhesConsultaWidget()));
                   },
                   text: 'Adicionar nova consulta',
                   options: FFButtonOptions(

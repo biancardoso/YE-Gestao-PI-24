@@ -50,9 +50,9 @@ class _TelaExamesWidgetState extends State<TelaExamesWidget> {
               color: FlutterFlowTheme.of(context).secondaryBackground,
               size: 30,
             ),
-            onPressed: () async {
-              context.pushNamed('homepage');
-            },
+            // onPressed: () async {
+            //   context.pushNamed('homepage');
+            // },
           ),
           title: Align(
             alignment: AlignmentDirectional(0, 0),

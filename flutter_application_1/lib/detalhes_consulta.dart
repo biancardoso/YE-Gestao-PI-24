@@ -1,3 +1,4 @@
+import 'package:flutter_application_1/registro_consulta_widget.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 import 'dart:async';
 import 'package:flutter/material.dart';
@@ -103,7 +104,7 @@ class _DetalhesConsultaWidgetState extends State<DetalhesConsultaWidget> {
               size: 24,
             ),
             onPressed: () async {
-              context.pushNamed('registro_consulta');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => RegistroConsultaWidget()));
             },
           ),
           title: Align(
@@ -559,7 +560,7 @@ class _DetalhesConsultaWidgetState extends State<DetalhesConsultaWidget> {
                       },
                     );
 
-                    context.pushNamed('registro_consulta');
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => RegistroConsultaWidget()));
                   },
                   text: 'Registrar consulta',
                   options: FFButtonOptions(

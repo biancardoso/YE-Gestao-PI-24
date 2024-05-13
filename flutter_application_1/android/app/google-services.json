@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "584970875516",
+    "project_id": "calendario-pii",
+    "storage_bucket": "calendario-pii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584970875516:android:018ef926ce48666d208ff9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpp-jhc3nZr3llBPqEln8bqQ7xyL1BKlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584970875516:android:69dc0e3b771dad98208ff9",
+        "android_client_info": {
+          "package_name": "com.mycompany.yegestao"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpp-jhc3nZr3llBPqEln8bqQ7xyL1BKlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

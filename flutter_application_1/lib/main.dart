@@ -1,8 +1,17 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_application_1/tela_exames.dart';
+import 'package:flutter_application_1/firebase_options.dart';
+import 'package:flutter_application_1/historico_exames.dart';
+import 'package:flutter_application_1/resultados_exames.dart';
 // import 'package:flutter_application_1/tela_exames_inicial';
 
-void main() {
+void main() async{
+   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
+  FirebaseFirestore.instance.settings = const Settings(
+    persistenceEnabled: true,
+  );
   runApp(const MyApp());
 }
 
@@ -33,7 +42,10 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const TelaExamesWidget(),
+      home: const HistoricoExamesWidget(),
+      routes: {
+        '/resultados_exames': (context) => const ResultadosExamesWidget(),
+      },
     );
   }
 }

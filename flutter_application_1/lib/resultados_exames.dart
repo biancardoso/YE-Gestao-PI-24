@@ -1,11 +1,14 @@
 
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_application_1/exame_record.dart';
 import 'package:flutter_application_1/resultados_exames_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
+import 'package:uuid/uuid.dart';
 
 
 class ResultadosExamesWidget extends StatefulWidget {
@@ -29,6 +32,7 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
   List<File>? images;
+  var uuid = Uuid();
   // late final _scannedDocuments = ScannedDocuments();
 
   @override
@@ -419,6 +423,7 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () {
+                    adicionarExame(ExameRecord(id:  uuid.v1(), nomeExame: _model.textController1.text, horarioConsulta: _model.textController2.text, resultado: double.parse(_model.textController3.text)));
                     print('Button pressed ...');
                   },
                   text: 'Registrar resultado de exame',
@@ -447,5 +452,13 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
         ),
       ),
     );
+  }
+   Future<void> adicionarExame(ExameRecord exame) async {
+    try {
+      await FirebaseFirestore.instance.collection('exames').add(exame.toJson());
+    } catch (e) {
+      print('Erro ao adicionar exame: $e');
+      // Você pode tratar o erro conforme necessário
+    }
   }
 }

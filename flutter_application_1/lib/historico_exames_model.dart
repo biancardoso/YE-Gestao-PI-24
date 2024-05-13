@@ -1,11 +1,11 @@
 
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
-import 'tela_exames.dart' show TelaExamesWidget;
+import 'historico_exames.dart' show HistoricoExamesWidget;
 import 'package:flutter/material.dart';
 
 
-class TelaExamesModel extends FlutterFlowModel<TelaExamesWidget> {
+class HistoricoExamesModel extends FlutterFlowModel<HistoricoExamesWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
@@ -18,3 +18,4 @@ class TelaExamesModel extends FlutterFlowModel<TelaExamesWidget> {
     unfocusNode.dispose();
   }
 }
+

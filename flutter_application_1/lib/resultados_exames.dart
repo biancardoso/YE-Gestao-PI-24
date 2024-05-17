@@ -1,11 +1,14 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_storage/firebase_storage.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_application_1/exame_record.dart';
 import 'package:flutter_application_1/resultados_exames_model.dart';
 import 'package:flutterflow_ui/flutterflow_ui.dart';
 
 import 'package:cunning_document_scanner/cunning_document_scanner.dart';
+import 'package:masked_text/masked_text.dart';
 import 'dart:io';
 import 'package:path_provider/path_provider.dart';
 import 'package:uuid/uuid.dart';
@@ -155,7 +158,19 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
         backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: Color(0xFF729487),
-          automaticallyImplyLeading: false,
+          leading: FlutterFlowIconButton(
+            borderRadius: 20,
+            borderWidth: 1,
+            buttonSize: 40,
+            icon: Icon(
+              Icons.chevron_left_rounded,
+              color: FlutterFlowTheme.of(context).secondaryBackground,
+              size: 24,
+            ),
+            onPressed: () async {
+              Navigator.of(context).pop();
+            },
+          ),
           title: Align(
             alignment: AlignmentDirectional(0, 0),
             child: Text(
@@ -174,15 +189,84 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
-            children: [
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 10),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: [
+                Align(
+                  alignment: AlignmentDirectional(0, 0),
+                  child: Padding(
+                    padding: EdgeInsetsDirectional.fromSTEB(0, 100, 0, 10),
+                    child: Text(
+                      'Coloque o nome do exame realizado',
+                      style: FlutterFlowTheme.of(context).bodyMedium.override(
+                            fontFamily: 'Readex Pro',
+                            fontSize: 16,
+                            letterSpacing: 0,
+                          ),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  child: TextFormField(
+                    controller: _model.textController1,
+                    focusNode: _model.textFieldFocusNode1,
+                    autofocus: true,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Escreva aqui..',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0,
+                        ),
+                    validator:
+                        _model.textController1Validator.asValidator(context),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
                   child: Text(
-                    'Coloque o nome do exame realizado',
+                    'Coloque a data em que o exame foi realizado',
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
                           fontSize: 16,
@@ -190,264 +274,200 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
                         ),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                child: TextFormField(
-                  controller: _model.textController1,
-                  focusNode: _model.textFieldFocusNode1,
-                  autofocus: true,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Escreva aqui..',
-                    labelStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    hintStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 2,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  child: MaskedTextField(
+                    mask: "##/##/####",
+                    maxLength: 10,
+                    keyboardType: TextInputType.number,
+                    controller: _model.textController2,
+                    focusNode: _model.textFieldFocusNode2,
+                    autofocus: true,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Escreva aqui..',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
                       ),
-                      borderRadius: BorderRadius.circular(8),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
                     ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0,
-                      ),
-                  validator:
-                      _model.textController1Validator.asValidator(context),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                child: Text(
-                  'Coloque a data em que o exame foi realizado',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 16,
-                        letterSpacing: 0,
-                      ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                child: TextFormField(
-                  controller: _model.textController2,
-                  focusNode: _model.textFieldFocusNode2,
-                  autofocus: true,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Escreva aqui..',
-                    labelStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    hintStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0,
-                      ),
-                  validator:
-                      _model.textController2Validator.asValidator(context),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
-                child: Text(
-                  'Coloque o resultado do exame',
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 16,
-                        letterSpacing: 0,
-                      ),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
-                child: TextFormField(
-                  controller: _model.textController3,
-                  focusNode: _model.textFieldFocusNode3,
-                  autofocus: true,
-                  obscureText: false,
-                  decoration: InputDecoration(
-                    labelText: 'Escreva aqui..',
-                    labelStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    hintStyle:
-                        FlutterFlowTheme.of(context).labelMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0,
-                            ),
-                    enabledBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).alternate,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).primary,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    errorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                    focusedErrorBorder: UnderlineInputBorder(
-                      borderSide: BorderSide(
-                        color: FlutterFlowTheme.of(context).error,
-                        width: 2,
-                      ),
-                      borderRadius: BorderRadius.circular(8),
-                    ),
-                  ),
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        letterSpacing: 0,
-                      ),
-                  validator:
-                      _model.textController3Validator.asValidator(context),
-                ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 50),
-                child: Text(
-                  ' Envie uma cópia do seu exame em formato .pdf ou adicione como imagem ',
-                  textAlign: TextAlign.center,
-                  style: FlutterFlowTheme.of(context).bodyMedium.override(
-                        fontFamily: 'Readex Pro',
-                        fontSize: 16,
-                        letterSpacing: 0,
-                      ),
-                ),
-              ),
-              (images!=null)?Container(height: 50, width: 50, child: Image.file(images![0])):
-              Align(
-                alignment: AlignmentDirectional(0, 0),
-                child: FFButtonWidget(
-                  onPressed:_scanDocument,
-                   text: 'Adicionar laudo do exame',
-                  options: FFButtonOptions(
-                    width: 350,
-                    height: 40,
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF729487),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
                           letterSpacing: 0,
                         ),
-                    elevation: 3,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
+                    validator:
+                        _model.textController2Validator.asValidator(context),
                   ),
                 ),
-              ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                child: FFButtonWidget(
-                  onPressed: () {
-                    adicionarExame(ExameRecord(id:  uuid.v1(), nomeExame: _model.textController1.text, horarioConsulta: _model.textController2.text, resultado: double.parse(_model.textController3.text)));
-                    print('Button pressed ...');
-                  },
-                  text: 'Registrar resultado de exame',
-                  options: FFButtonOptions(
-                    width: 350,
-                    height: 40,
-                    padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
-                    iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
-                    color: Color(0xFF3A514A),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Montserrat',
-                          color: Colors.white,
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 10),
+                  child: Text(
+                    'Coloque o resultado do exame',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 16,
                           letterSpacing: 0,
                         ),
-                    elevation: 3,
-                    borderSide: BorderSide(
-                      color: Colors.transparent,
-                      width: 1,
-                    ),
-                    borderRadius: BorderRadius.circular(8),
                   ),
                 ),
-              ),
-            ],
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(8, 0, 8, 0),
+                  child: TextFormField(
+                    controller: _model.textController3,
+                    focusNode: _model.textFieldFocusNode3,
+                    autofocus: true,
+                    obscureText: false,
+                    decoration: InputDecoration(
+                      labelText: 'Escreva aqui..',
+                      labelStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      hintStyle:
+                          FlutterFlowTheme.of(context).labelMedium.override(
+                                fontFamily: 'Readex Pro',
+                                letterSpacing: 0,
+                              ),
+                      enabledBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).alternate,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).primary,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      errorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      focusedErrorBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: FlutterFlowTheme.of(context).error,
+                          width: 2,
+                        ),
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                    ),
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          letterSpacing: 0,
+                        ),
+                    validator:
+                        _model.textController3Validator.asValidator(context),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 50),
+                  child: Text(
+                    ' Envie uma cópia do seu exame em formato .pdf ou adicione como imagem ',
+                    textAlign: TextAlign.center,
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 16,
+                          letterSpacing: 0,
+                        ),
+                  ),
+                ),
+                (images!=null)?Container(height: 50, width: 50, child: Image.file(images![0])):
+                Align(
+                  alignment: AlignmentDirectional(0, 0),
+                  child: FFButtonWidget(
+                    onPressed:_scanDocument,
+                     text: 'Adicionar laudo do exame',
+                    options: FFButtonOptions(
+                      width: 350,
+                      height: 40,
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      color: Color(0xFF729487),
+                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            letterSpacing: 0,
+                          ),
+                      elevation: 3,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
+                  child: FFButtonWidget(
+                    onPressed: () {
+                      adicionarExame(ExameRecord(id:  uuid.v1(), nomeExame: _model.textController1.text, horarioConsulta: _model.textController2.text, resultado: double.parse(_model.textController3.text)));
+                      print('Button pressed ...');
+                    },
+                    text: 'Registrar resultado de exame',
+                    options: FFButtonOptions(
+                      width: 350,
+                      height: 40,
+                      padding: EdgeInsetsDirectional.fromSTEB(24, 0, 24, 0),
+                      iconPadding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
+                      color: Color(0xFF3A514A),
+                      textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                            fontFamily: 'Montserrat',
+                            color: Colors.white,
+                            letterSpacing: 0,
+                          ),
+                      elevation: 3,
+                      borderSide: BorderSide(
+                        color: Colors.transparent,
+                        width: 1,
+                      ),
+                      borderRadius: BorderRadius.circular(8),
+                    ),
+                  ),
+                ),
+              ],
+            ),
           ),
         ),
       ),
@@ -455,7 +475,11 @@ class _ResultadosExamesWidgetState extends State<ResultadosExamesWidget> {
   }
    Future<void> adicionarExame(ExameRecord exame) async {
     try {
-      await FirebaseFirestore.instance.collection('exames').add(exame.toJson());
+      exame.idImagem = uuid.v1();
+      Reference ref = FirebaseStorage.instance.ref().child(exame.idImagem!).child("/exames.jpg");
+      await ref.putData(images![0].readAsBytesSync());
+      await FirebaseFirestore.instance.collection('exame').add(exame.toJson());
+      Navigator.of(context).pop();
     } catch (e) {
       print('Erro ao adicionar exame: $e');
       // Você pode tratar o erro conforme necessário

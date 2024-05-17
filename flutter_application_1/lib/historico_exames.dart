@@ -135,15 +135,16 @@ class _HistoricoExamesWidgetState extends State<HistoricoExamesWidget> {
                         child: Column(
                           mainAxisSize: MainAxisSize.max,
                           children: [
-                            SingleChildScrollView(
-                              scrollDirection: Axis.horizontal,
-                              child: Row(
-                                mainAxisSize: MainAxisSize.max,
-                                children: [
-                                  Column(
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.start,
+                              children: [
+                                Padding(
+                                  padding: const EdgeInsets.only(left: 20, right: 20),
+                                  child: Column(
                                     mainAxisSize: MainAxisSize.max,
                                     crossAxisAlignment:
-                                        CrossAxisAlignment.center,
+                                        CrossAxisAlignment.start,
                                     children: [
                                       Text(
                                         listViewExameRecord.nomeExame,
@@ -165,30 +166,8 @@ class _HistoricoExamesWidgetState extends State<HistoricoExamesWidget> {
                                       ),
                                     ],
                                   ),
-                                  Align(
-                                    alignment: AlignmentDirectional(0, 0),
-                                    child: Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          200, 0, 0, 0),
-                                      child: FlutterFlowIconButton(
-                                        borderColor: Color(0xFF3A514A),
-                                        borderRadius: 8,
-                                        borderWidth: 2,
-                                        buttonSize: 40,
-                                        icon: Icon(
-                                          Icons.arrow_forward_ios_rounded,
-                                          color: Color(0xFF3A514A),
-                                          size: 24,
-                                        ),
-                                        onPressed: () async {
-                                          Navigator.pushNamed(context, 'tela_exames');
-                                      
-                                        },
-                                      ),
-                                    ),
-                                  ),
-                                ],
-                              ),
+                                ),
+                              ],
                             ),
                             Divider(
                               thickness: 1,
@@ -203,28 +182,11 @@ class _HistoricoExamesWidgetState extends State<HistoricoExamesWidget> {
                   );
                 },
               ),
-              Padding(
-                padding: EdgeInsetsDirectional.fromSTEB(0, 200, 0, 0),
-                child: FlutterFlowIconButton(
-                  borderColor: Color(0xFF729487),
-                  borderRadius: 40,
-                  borderWidth: 2,
-                  buttonSize: 60,
-                  fillColor: Color(0x65729487),
-                  icon: Icon(
-                    Icons.add,
-                    color: Color(0xFF3A514A),
-                    size: 40,
-                  ),
-                  onPressed: () async {
-                    Navigator.pushNamed(context, '/resultados_exames');
-                  },
-                ),
-              ),
+
               Align(
                 alignment: AlignmentDirectional(0, 1),
                 child: Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 500, 0, 0),
+                  padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 0),
                   child: FlutterFlowIconButton(
                     borderColor: Colors.transparent,
                     borderRadius: 35,
@@ -249,13 +211,13 @@ class _HistoricoExamesWidgetState extends State<HistoricoExamesWidget> {
     );
   }
     Stream<List<ExameRecord>> getExamesStream() {
-    return FirebaseFirestore.instance.collection('exames')
+    return FirebaseFirestore.instance.collection('exame')
                     .snapshots()
                     .map((snapshot) => snapshot.docs.map((doc) => ExameRecord(
                           id: doc.id,
-                          nomeExame: doc['nomeExame'],
-                          resultado: doc['resultado'],
-                          horarioConsulta: doc['horario_consulta']
+                          nomeExame: doc['nome_exame'],
+                          resultado: doc['resultado']??"",
+                          horarioConsulta: doc['data_exame']
                         ))
                         .toList());
   }

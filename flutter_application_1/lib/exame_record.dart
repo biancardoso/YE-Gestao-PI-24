@@ -24,8 +24,8 @@ class ExameRecord {
   }
 
   Map<String, dynamic> toJson() => {
-        'nomeExame': nomeExame,
-        'horario_consulta': horarioConsulta,
+        'nome_exame': nomeExame,
+        'data_exame': horarioConsulta,
         'resultado': resultado,
         'idImagem': idImagem,
         'id': id

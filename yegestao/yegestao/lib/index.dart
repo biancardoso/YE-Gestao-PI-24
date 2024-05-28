@@ -1,0 +1,35 @@
+// Export pages
+export '/pages/registro_consulta/registro_consulta_widget.dart'
+    show RegistroConsultaWidget;
+export '/pages/detalhes_consulta/detalhes_consulta_widget.dart'
+    show DetalhesConsultaWidget;
+export '/pages/cadastro/cadastro_widget.dart' show CadastroWidget;
+export '/pages/tela_inicial/tela_inicial_widget.dart' show TelaInicialWidget;
+export '/pages/tela_acesso/tela_acesso_widget.dart' show TelaAcessoWidget;
+export '/pages/tela_login/tela_login_widget.dart' show TelaLoginWidget;
+export '/pages/tela_exames/tela_exames_widget.dart' show TelaExamesWidget;
+export '/pages/homepage/homepage_widget.dart' show HomepageWidget;
+export '/pages/medicamentos/medicamentos_widget.dart' show MedicamentosWidget;
+export '/pages/resultados_exames/resultados_exames_widget.dart'
+    show ResultadosExamesWidget;
+export '/pages/perfil/perfil_widget.dart' show PerfilWidget;
+export '/pages/historico_exames/historico_exames_widget.dart'
+    show HistoricoExamesWidget;
+export '/pages/adicionar_medicamento/adicionar_medicamento_widget.dart'
+    show AdicionarMedicamentoWidget;
+export '/pages/detalhes_medicamentoss/detalhes_medicamentoss_widget.dart'
+    show DetalhesMedicamentossWidget;
+export '/pages/perfil_glicemia/perfil_glicemia_widget.dart'
+    show PerfilGlicemiaWidget;
+export '/pages/perfil_pressao/perfil_pressao_widget.dart'
+    show PerfilPressaoWidget;
+export '/pages/perfil_pesoaltura/perfil_pesoaltura_widget.dart'
+    show PerfilPesoalturaWidget;
+export '/pages/perfil_imc/perfil_imc_widget.dart' show PerfilImcWidget;
+export '/pages/adicionar_glicemia/adicionar_glicemia_widget.dart'
+    show AdicionarGlicemiaWidget;
+export '/pages/adicionar_pressao/adicionar_pressao_widget.dart'
+    show AdicionarPressaoWidget;
+export '/pages/adicionar_pesoaltura/adicionar_pesoaltura_widget.dart'
+    show AdicionarPesoalturaWidget;
+export '/pages/adicionar_imc/adicionar_imc_widget.dart' show AdicionarImcWidget;

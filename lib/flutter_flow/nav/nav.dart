@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../../pages/categoria_exame/categoria_exame_widget.dart';
 import '/auth/base_auth_user_provider.dart';
 
 import '/backend/push_notifications/push_notifications_handler.dart'
@@ -105,6 +106,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const CadastroWidget(),
         ),
         FFRoute(
+          name: 'tela_inicial',
+          path: '/telaInicial',
+          builder: (context, params) => const TelaInicialWidget(),
+        ),
+        FFRoute(
           name: 'tela_acesso',
           path: '/telaAcesso',
           builder: (context, params) => const TelaAcessoWidget(),
@@ -135,9 +141,19 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ResultadosExamesWidget(),
         ),
         FFRoute(
+          name: 'perfil',
+          path: '/perfil',
+          builder: (context, params) => const PerfilWidget(),
+        ),
+        FFRoute(
           name: 'historico_exames',
           path: '/historicoExames',
-          builder: (context, params) => const HistoricoExamesWidget(),
+          builder: (context, params) => HistoricoExamesWidget(categoria: "",),
+        ),
+        FFRoute(
+          name: 'detalhes_medicamentos',
+          path: '/detalhesMedicamentos',
+          builder: (context, params) => const DetalhesMedicamentosWidget(),
         ),
         FFRoute(
           name: 'adicionar_medicamento',
@@ -225,6 +241,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'editar_perfil',
           path: '/editarPerfil',
           builder: (context, params) => const EditarPerfilWidget(),
+          name: 'categoria_exame',
+          path: '/categoriaexame',
+          builder: (context, params) => const CategoriaExameWidget(),
         )
       ].map((r) => r.toRoute(appStateNotifier)).toList(),
     );

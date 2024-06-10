@@ -36,11 +36,16 @@ class ExameRecord extends FirestoreRecord {
   bool get status => _status ?? false;
   bool hasStatus() => _status != null;
 
+  String? _idImagem;
+  String get idImagem => _idImagem ?? '';
+  bool hasidImagem() => _idImagem != null;
+
   void _initializeFields() {
     _nomeExame = snapshotData['nome_exame'] as String?;
     _dataExame = snapshotData['data_exame'] as DateTime?;
     _resultado = castToType<double>(snapshotData['resultado']);
     _status = snapshotData['status'] as bool?;
+    _idImagem = snapshotData['idImagem'] as String?;
   }
 
   static CollectionReference get collection =>
@@ -78,6 +83,7 @@ class ExameRecord extends FirestoreRecord {
 
 Map<String, dynamic> createExameRecordData({
   String? nomeExame,
+  String? idImagem,
   DateTime? dataExame,
   double? resultado,
   bool? status,
@@ -88,6 +94,7 @@ Map<String, dynamic> createExameRecordData({
       'data_exame': dataExame,
       'resultado': resultado,
       'status': status,
+      'idImagem': idImagem,
     }.withoutNulls,
   );
 
@@ -102,12 +109,13 @@ class ExameRecordDocumentEquality implements Equality<ExameRecord> {
     return e1?.nomeExame == e2?.nomeExame &&
         e1?.dataExame == e2?.dataExame &&
         e1?.resultado == e2?.resultado &&
-        e1?.status == e2?.status;
+        e1?.status == e2?.status &&
+        e1?.idImagem == e2?.idImagem;
   }
 
   @override
   int hash(ExameRecord? e) => const ListEquality()
-      .hash([e?.nomeExame, e?.dataExame, e?.resultado, e?.status]);
+      .hash([e?.nomeExame, e?.dataExame, e?.resultado, e?.status, e?.idImagem]);
 
   @override
   bool isValidKey(Object? o) => o is ExameRecord;

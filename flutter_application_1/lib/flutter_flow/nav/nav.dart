@@ -139,7 +139,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'historico_exames',
           path: '/historicoExames',
-          builder: (context, params) => const HistoricoExamesWidget(),
+          builder: (context, params) => HistoricoExamesWidget(categoria: "",),
         ),
         FFRoute(
           name: 'detalhes_medicamentos',

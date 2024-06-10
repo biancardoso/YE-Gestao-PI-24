@@ -104,9 +104,11 @@ class _CategoriaExameWidgetState extends State<CategoriaExameWidget> {
                   child: Column(
                     mainAxisSize: MainAxisSize.max,
                     children: [
-                      SingleChildScrollView(
-                        scrollDirection: Axis.horizontal,
+                      Padding(
+                        padding: const EdgeInsets.only(left: 20, right: 20),
                         child: Row(
+
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           mainAxisSize: MainAxisSize.max,
                           children: [
                             Column(
@@ -129,7 +131,7 @@ class _CategoriaExameWidgetState extends State<CategoriaExameWidget> {
                               alignment: const AlignmentDirectional(0.0, 0.0),
                               child: Padding(
                                 padding: const EdgeInsetsDirectional.fromSTEB(
-                                    200.0, 0.0, 0.0, 0.0),
+                                    0.0, 0.0, 0.0, 0.0),
                                 child: FlutterFlowIconButton(
                                   borderColor: const Color(0xFF3A514A),
                                   borderRadius: 8.0,
@@ -143,7 +145,7 @@ class _CategoriaExameWidgetState extends State<CategoriaExameWidget> {
                                   onPressed: () async {
                                     Navigator.push(
                                       context,
-                                      MaterialPageRoute(builder: (context) => const HistoricoExamesWidget()),
+                                      MaterialPageRoute(builder: (context) => HistoricoExamesWidget(categoria: categoria,)),
                                     );
                                   },
                                 ),

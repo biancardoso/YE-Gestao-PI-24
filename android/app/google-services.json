@@ -1,0 +1,90 @@
+{
+  "project_info": {
+    "project_number": "584970875516",
+    "project_id": "calendario-pii",
+    "storage_bucket": "calendario-pii.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584970875516:android:018ef926ce48666d208ff9",
+        "android_client_info": {
+          "package_name": "com.example.flutter_application_1"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584970875516-s65kmjamk768kee3qlam2qghre0606pp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpp-jhc3nZr3llBPqEln8bqQ7xyL1BKlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584970875516-s65kmjamk768kee3qlam2qghre0606pp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584970875516-67dog70f7slrb0nfh5ui6pbo7encok4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.yegestao"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584970875516:android:69dc0e3b771dad98208ff9",
+        "android_client_info": {
+          "package_name": "com.mycompany.yegestao"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584970875516-lt3h2h4l9sehcfe2ntli8r4bisgjhlip.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.mycompany.yegestao",
+            "certificate_hash": "9bbb3186b2189ef16d8f272bdab59362c395cbb4"
+          }
+        },
+        {
+          "client_id": "584970875516-s65kmjamk768kee3qlam2qghre0606pp.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCpp-jhc3nZr3llBPqEln8bqQ7xyL1BKlQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "584970875516-s65kmjamk768kee3qlam2qghre0606pp.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "584970875516-67dog70f7slrb0nfh5ui6pbo7encok4n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.mycompany.yegestao"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

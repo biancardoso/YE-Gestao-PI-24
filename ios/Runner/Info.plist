@@ -5,7 +5,7 @@
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
-	<string>Yegestao</string>
+	<string>yegestao</string>
 	<key>CFBundleExecutable</key>
 	<string>$(EXECUTABLE_NAME)</string>
 	<key>CFBundleIdentifier</key>
@@ -16,14 +16,81 @@
 	<string>yegestao</string>
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
+
 	<key>CFBundleShortVersionString</key>
 	<string>$(FLUTTER_BUILD_NAME)</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>com.googleusercontent.apps.584970875516-67dog70f7slrb0nfh5ui6pbo7encok4n</string>
+                <string>fb1143124053391144</string>
+            </array>
+        </dict>
+
+        <dict>
+        <key>CFBundleTypeRole</key>
+        <string>Editor</string>
+        <key>CFBundleURLName</key>
+        <string>yegestao.com</string>
+        <key>CFBundleURLSchemes</key>
+        <array>
+        <string>yegestao</string>
+        </array>
+        </dict>
+    </array>
+    <key>FlutterDeepLinkingEnabled</key>
+    <true/>
+
+    <key>FacebookAppID</key>
+    <string>1143124053391144</string>
+    <key>FacebookDisplayName</key>
+    <string>YeGestao</string>
+
 	<key>CFBundleVersion</key>
 	<string>$(FLUTTER_BUILD_NUMBER)</string>
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
+
+	<key>NSCameraUsageDescription</key>
+    <string>In order to take a picture or video, this app requires permission to access the camera.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+    <string>In order to upload data, this app requires permission to access the photo library.</string>
+	<key>NSCalendarsUsageDescription</key>
+    <string>O aplicativo poderá acessar seu calendário</string>
+	<key>PermissionGroupNotification</key>
+    <string>O aplicativo poderá enviar notifiações</string>
+    <key>UIBackgroundModes</key>
+    <array>
+        <string>fetch</string>
+        <string>remote-notification</string>
+    </array>
+
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+      <string>fbapi</string>
+      <string>fbapi20130214</string>
+      <string>fbapi20130410</string>
+      <string>fbapi20130702</string>
+      <string>fbapi20131010</string>
+      <string>fbapi20131219</string>
+      <string>fbapi20140410</string>
+      <string>fbapi20140116</string>
+      <string>fbapi20150313</string>
+      <string>fbapi20150629</string>
+      <string>fbapi20160328</string>
+      <string>fbauth</string>
+      <string>fb-messenger-share-api</string>
+      <string>fbauth2</string>
+      <string>fbshareextension</string>
+
+    </array>
+
 	<key>UILaunchStoryboardName</key>
 	<string>LaunchScreen</string>
 	<key>UIMainStoryboardFile</key>
@@ -45,5 +112,8 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>UIViewControllerBasedStatusBarAppearance</key>
+	<false/>
+
 </dict>
 </plist>

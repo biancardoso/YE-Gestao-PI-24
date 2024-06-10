@@ -19,3 +19,25 @@ export '/pages/detalhes_medicamentos/detalhes_medicamentos_widget.dart'
     show DetalhesMedicamentosWidget;
 export '/pages/adicionar_medicamento/adicionar_medicamento_widget.dart'
     show AdicionarMedicamentoWidget;
+export '/pages/detalhes_medicamentoss/detalhes_medicamentoss_widget.dart'
+    show DetalhesMedicamentossWidget;
+export '/pages/perfil_glicemia/perfil_glicemia_widget.dart'
+    show PerfilGlicemiaWidget;
+export '/pages/perfil_pressao/perfil_pressao_widget.dart'
+    show PerfilPressaoWidget;
+export '/pages/perfil_imc/perfil_imc_widget.dart' show PerfilImcWidget;
+export '/pages/adicionar_glicemia/adicionar_glicemia_widget.dart'
+    show AdicionarGlicemiaWidget;
+export '/pages/adicionar_pressao/adicionar_pressao_widget.dart'
+    show AdicionarPressaoWidget;
+export '/pages/adicionar_imc/adicionar_imc_widget.dart' show AdicionarImcWidget;
+export '/pages/tela_exames_copy/tela_exames_copy_widget.dart'
+    show TelaExamesCopyWidget;
+export '/pages/tela_exames_copy2/tela_exames_copy2_widget.dart'
+    show TelaExamesCopy2Widget;
+export '/pages/tela_exames_copy3/tela_exames_copy3_widget.dart'
+    show TelaExamesCopy3Widget;
+export '/pages/historico_consulta/historico_consulta_widget.dart'
+    show HistoricoConsultaWidget;
+export '/pages/profile/profile_widget.dart' show ProfileWidget;
+export '/pages/editar_perfil/editar_perfil_widget.dart' show EditarPerfilWidget;

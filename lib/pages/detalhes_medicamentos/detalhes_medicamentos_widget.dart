@@ -3,11 +3,11 @@ import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import 'package:flutter/material.dart';
-import 'detalhes_medicamentoss_model.dart';
-export 'detalhes_medicamentoss_model.dart';
+import 'detalhes_medicamentos_model.dart';
+export 'detalhes_medicamentos_model.dart';
 
-class DetalhesMedicamentossWidget extends StatefulWidget {
-  const DetalhesMedicamentossWidget({
+class DetalhesMedicamentosWidget extends StatefulWidget {
+  const DetalhesMedicamentosWidget({
     super.key,
     required this.nomeMedicamento,
   });
@@ -15,20 +15,20 @@ class DetalhesMedicamentossWidget extends StatefulWidget {
   final DocumentReference? nomeMedicamento;
 
   @override
-  State<DetalhesMedicamentossWidget> createState() =>
-      _DetalhesMedicamentossWidgetState();
+  State<DetalhesMedicamentosWidget> createState() =>
+      _DetalhesMedicamentosWidgetState();
 }
 
-class _DetalhesMedicamentossWidgetState
-    extends State<DetalhesMedicamentossWidget> {
-  late DetalhesMedicamentossModel _model;
+class _DetalhesMedicamentosWidgetState
+    extends State<DetalhesMedicamentosWidget> {
+  late DetalhesMedicamentosModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => DetalhesMedicamentossModel());
+    _model = createModel(context, () => DetalhesMedicamentosModel());
   }
 
   @override
@@ -74,7 +74,8 @@ class _DetalhesMedicamentossWidgetState
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 40.0, 0.0),
+              padding:
+                  const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 40.0, 0.0),
               child: Text(
                 'Medicamentos',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
@@ -97,7 +98,8 @@ class _DetalhesMedicamentossWidgetState
               Align(
                 alignment: const AlignmentDirectional(0.0, -1.34),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 120.0, 5.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      5.0, 120.0, 5.0, 0.0),
                   child: StreamBuilder<List<AdicionarMedicamentoRecord>>(
                     stream: queryAdicionarMedicamentoRecord(
                       queryBuilder: (adicionarMedicamentoRecord) =>
@@ -163,7 +165,8 @@ class _DetalhesMedicamentossWidgetState
               Align(
                 alignment: const AlignmentDirectional(-0.06, -0.7),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(5.0, 0.0, 5.0, 0.0),
                   child: StreamBuilder<List<AdicionarMedicamentoRecord>>(
                     stream: queryAdicionarMedicamentoRecord(
                       singleRecord: true,
@@ -226,7 +229,8 @@ class _DetalhesMedicamentossWidgetState
               Align(
                 alignment: const AlignmentDirectional(0.0, -0.85),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 120.0, 5.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      5.0, 120.0, 5.0, 0.0),
                   child: StreamBuilder<List<AdicionarMedicamentoRecord>>(
                     stream: queryAdicionarMedicamentoRecord(
                       queryBuilder: (adicionarMedicamentoRecord) =>
@@ -293,7 +297,8 @@ class _DetalhesMedicamentossWidgetState
               Align(
                 alignment: const AlignmentDirectional(0.0, -0.63),
                 child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(5.0, 125.0, 5.0, 0.0),
+                  padding: const EdgeInsetsDirectional.fromSTEB(
+                      5.0, 125.0, 5.0, 0.0),
                   child: StreamBuilder<List<AdicionarMedicamentoRecord>>(
                     stream: queryAdicionarMedicamentoRecord(
                       queryBuilder: (adicionarMedicamentoRecord) =>

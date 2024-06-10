@@ -1,9 +1,9 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'detalhes_medicamentoss_widget.dart' show DetalhesMedicamentossWidget;
+import 'detalhes_medicamentos_widget.dart' show DetalhesMedicamentosWidget;
 import 'package:flutter/material.dart';
 
-class DetalhesMedicamentossModel
-    extends FlutterFlowModel<DetalhesMedicamentossWidget> {
+class DetalhesMedicamentosModel
+    extends FlutterFlowModel<DetalhesMedicamentosWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();

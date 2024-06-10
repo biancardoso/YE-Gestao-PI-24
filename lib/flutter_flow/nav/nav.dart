@@ -73,8 +73,9 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       initialLocation: '/',
       debugLogDiagnostics: true,
       refreshListenable: appStateNotifier,
-      errorBuilder: (context, state) =>
-          appStateNotifier.loggedIn ? const TelaLoginWidget() : const TelaAcessoWidget(),
+      errorBuilder: (context, state) => appStateNotifier.loggedIn
+          ? const TelaLoginWidget()
+          : const TelaAcessoWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
@@ -146,7 +147,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'detalhes_medicamentoss',
           path: '/detalhesMedicamentoss',
-          builder: (context, params) => DetalhesMedicamentossWidget(
+          builder: (context, params) => DetalhesMedicamentosWidget(
             nomeMedicamento: params.getParam(
               'nomeMedicamento',
               ParamType.DocumentReference,
@@ -461,7 +462,8 @@ class TransitionInfo {
   final Duration duration;
   final Alignment? alignment;
 
-  static TransitionInfo appDefault() => const TransitionInfo(hasTransition: false);
+  static TransitionInfo appDefault() =>
+      const TransitionInfo(hasTransition: false);
 }
 
 class RootPageContext {

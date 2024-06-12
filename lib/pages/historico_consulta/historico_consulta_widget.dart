@@ -10,9 +10,13 @@ class HistoricoConsultaWidget extends StatefulWidget {
   const HistoricoConsultaWidget({
     super.key,
     required this.nomeConsulta,
+    required this.data,
+    required this.resumo,
   });
 
-  final String? nomeConsulta;
+  final ConsultasRecord? nomeConsulta;
+  final ConsultasRecord? data;
+  final ConsultasRecord? resumo;
 
   @override
   State<HistoricoConsultaWidget> createState() =>
@@ -83,242 +87,87 @@ class _HistoricoConsultaWidgetState extends State<HistoricoConsultaWidget> {
         ),
         body: SafeArea(
           top: true,
-          child: Column(
-            mainAxisSize: MainAxisSize.max,
+          child: Stack(
             children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.0),
-                child: Padding(
-                  padding: const EdgeInsetsDirectional.fromSTEB(0.0, 20.0, 0.0, 0.0),
+              Stack(
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(5.0, 30.0, 5.0, 0.0),
+                    child: Container(
+                      width: 400.0,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(6.0),
+                        border: Border.all(
+                          color: const Color(0xFF729487),
+                          width: 2.0,
+                        ),
+                      ),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.nomeConsulta?.especialidade,
+                          'nome',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(5.0, 100.0, 5.0, 0.0),
+                    child: Container(
+                      width: 400.0,
+                      height: 60.0,
+                      decoration: BoxDecoration(
+                        color: FlutterFlowTheme.of(context).secondaryBackground,
+                        borderRadius: BorderRadius.circular(6.0),
+                        border: Border.all(
+                          color: const Color(0xFF729487),
+                          width: 2.0,
+                        ),
+                      ),
+                      child: Text(
+                        valueOrDefault<String>(
+                          widget.data?.dia?.toString(),
+                          '10/06/2024',
+                        ),
+                        style: FlutterFlowTheme.of(context).bodyMedium.override(
+                              fontFamily: 'Readex Pro',
+                              letterSpacing: 0.0,
+                            ),
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 170.0, 5.0, 0.0),
+                child: Container(
+                  width: 400.0,
+                  height: 180.0,
+                  decoration: BoxDecoration(
+                    color: FlutterFlowTheme.of(context).secondaryBackground,
+                    borderRadius: BorderRadius.circular(6.0),
+                    border: Border.all(
+                      color: const Color(0xFF729487),
+                      width: 2.0,
+                    ),
+                  ),
                   child: Text(
-                    'Detalhes da consulta',
+                    valueOrDefault<String>(
+                      widget.resumo?.resumo,
+                      'resumo',
+                    ),
                     style: FlutterFlowTheme.of(context).bodyMedium.override(
                           fontFamily: 'Readex Pro',
-                          fontSize: 18.0,
                           letterSpacing: 0.0,
-                          fontWeight: FontWeight.w500,
                         ),
                   ),
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 20.0, 5.0, 0.0),
-                child: StreamBuilder<List<ConsultasRecord>>(
-                  stream: queryConsultasRecord(
-                    singleRecord: true,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    List<ConsultasRecord> containerConsultasRecordList =
-                        snapshot.data!;
-                    // Return an empty Container when the item does not exist.
-                    if (snapshot.data!.isEmpty) {
-                      return Container();
-                    }
-                    final containerConsultasRecord =
-                        containerConsultasRecordList.isNotEmpty
-                            ? containerConsultasRecordList.first
-                            : null;
-                    return Container(
-                      width: 391.0,
-                      height: 54.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        border: Border.all(
-                          color: const Color(0xFF3A514A),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        valueOrDefault<String>(
-                          containerConsultasRecord?.especialidade,
-                          'especialidade',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 20.0, 5.0, 0.0),
-                child: StreamBuilder<List<ConsultasRecord>>(
-                  stream: queryConsultasRecord(
-                    singleRecord: true,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    List<ConsultasRecord> containerConsultasRecordList =
-                        snapshot.data!;
-                    // Return an empty Container when the item does not exist.
-                    if (snapshot.data!.isEmpty) {
-                      return Container();
-                    }
-                    final containerConsultasRecord =
-                        containerConsultasRecordList.isNotEmpty
-                            ? containerConsultasRecordList.first
-                            : null;
-                    return Container(
-                      width: 391.0,
-                      height: 54.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        border: Border.all(
-                          color: const Color(0xFF3A514A),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        valueOrDefault<String>(
-                          containerConsultasRecord?.dia?.toString(),
-                          'hora',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 20.0, 5.0, 0.0),
-                child: StreamBuilder<List<ConsultasRecord>>(
-                  stream: queryConsultasRecord(
-                    singleRecord: true,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    List<ConsultasRecord> containerConsultasRecordList =
-                        snapshot.data!;
-                    // Return an empty Container when the item does not exist.
-                    if (snapshot.data!.isEmpty) {
-                      return Container();
-                    }
-                    final containerConsultasRecord =
-                        containerConsultasRecordList.isNotEmpty
-                            ? containerConsultasRecordList.first
-                            : null;
-                    return Container(
-                      width: 391.0,
-                      height: 54.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        border: Border.all(
-                          color: const Color(0xFF3A514A),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        valueOrDefault<String>(
-                          containerConsultasRecord?.horarioConsulta?.toString(),
-                          'hora',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    );
-                  },
-                ),
-              ),
-              Padding(
-                padding: const EdgeInsetsDirectional.fromSTEB(5.0, 20.0, 5.0, 0.0),
-                child: StreamBuilder<List<ConsultasRecord>>(
-                  stream: queryConsultasRecord(
-                    singleRecord: true,
-                  ),
-                  builder: (context, snapshot) {
-                    // Customize what your widget looks like when it's loading.
-                    if (!snapshot.hasData) {
-                      return Center(
-                        child: SizedBox(
-                          width: 50.0,
-                          height: 50.0,
-                          child: CircularProgressIndicator(
-                            valueColor: AlwaysStoppedAnimation<Color>(
-                              FlutterFlowTheme.of(context).primary,
-                            ),
-                          ),
-                        ),
-                      );
-                    }
-                    List<ConsultasRecord> containerConsultasRecordList =
-                        snapshot.data!;
-                    // Return an empty Container when the item does not exist.
-                    if (snapshot.data!.isEmpty) {
-                      return Container();
-                    }
-                    final containerConsultasRecord =
-                        containerConsultasRecordList.isNotEmpty
-                            ? containerConsultasRecordList.first
-                            : null;
-                    return Container(
-                      width: 391.0,
-                      height: 100.0,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(6.0),
-                        border: Border.all(
-                          color: const Color(0xFF3A514A),
-                          width: 2.0,
-                        ),
-                      ),
-                      child: Text(
-                        valueOrDefault<String>(
-                          containerConsultasRecord?.resumo,
-                          'resumo',
-                        ),
-                        style: FlutterFlowTheme.of(context).bodyMedium.override(
-                              fontFamily: 'Readex Pro',
-                              letterSpacing: 0.0,
-                            ),
-                      ),
-                    );
-                  },
                 ),
               ),
             ],

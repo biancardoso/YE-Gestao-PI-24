@@ -33,7 +33,6 @@ export '/pages/tela_exames_copy2/tela_exames_copy2_widget.dart'
     show TelaExamesCopy2Widget;
 export '/pages/tela_exames_copy3/tela_exames_copy3_widget.dart'
     show TelaExamesCopy3Widget;
-export '/pages/historico_consulta/historico_consulta_widget.dart'
-    show HistoricoConsultaWidget;
+export '/pages/historico_consulta/historico_consulta_widget.dart' show HistoricoConsultaWidget;
 export '/pages/profile/profile_widget.dart' show ProfileWidget;
 export '/pages/editar_perfil/editar_perfil_widget.dart' show EditarPerfilWidget;

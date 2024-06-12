@@ -7,7 +7,14 @@ import 'perfil_glicemia_model.dart';
 export 'perfil_glicemia_model.dart';
 
 class PerfilGlicemiaWidget extends StatefulWidget {
-  const PerfilGlicemiaWidget({super.key});
+  const PerfilGlicemiaWidget({
+    super.key,
+    double? glicose,
+    required this.data,
+  }) : glicose = glicose ?? 0.0;
+
+  final double glicose;
+  final DateTime? data;
 
   @override
   State<PerfilGlicemiaWidget> createState() => _PerfilGlicemiaWidgetState();
@@ -137,8 +144,10 @@ class _PerfilGlicemiaWidgetState extends State<PerfilGlicemiaWidget> {
                                           CrossAxisAlignment.center,
                                       children: [
                                         Text(
-                                          listViewAfericoesRecord.glicose
-                                              .toString(),
+                                          valueOrDefault<String>(
+                                            widget.glicose.toString(),
+                                            '0',
+                                          ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
                                               .override(
@@ -147,11 +156,9 @@ class _PerfilGlicemiaWidgetState extends State<PerfilGlicemiaWidget> {
                                               ),
                                         ),
                                         Text(
-                                          dateTimeFormat(
-                                            'd/M/y',
-                                            listViewAfericoesRecord.dataG!,
-                                            locale: FFLocalizations.of(context)
-                                                .languageCode,
+                                          valueOrDefault<String>(
+                                            widget.data?.toString(),
+                                            '12/02/2024',
                                           ),
                                           style: FlutterFlowTheme.of(context)
                                               .bodyMedium
@@ -178,7 +185,7 @@ class _PerfilGlicemiaWidgetState extends State<PerfilGlicemiaWidget> {
                                             size: 24.0,
                                           ),
                                           onPressed: () async {
-                                            context.pushNamed('tela_exames');
+                                            context.pushNamed('tela_glicemia');
                                           },
                                         ),
                                       ),

@@ -8,6 +8,7 @@ import 'package:flutter/material.dart';
 import 'historico_exames_model.dart';
 export 'historico_exames_model.dart';
 
+// ignore: must_be_immutable
 class HistoricoExamesWidget extends StatefulWidget {
   String categoria;
 

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '/backend/backend.dart';
 
 import '../../pages/categoria_exame/categoria_exame_widget.dart';
 import '/auth/base_auth_user_provider.dart';
@@ -76,14 +77,14 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
       refreshListenable: appStateNotifier,
       errorBuilder: (context, state) => appStateNotifier.loggedIn
           ? const TelaLoginWidget()
-          : const TelaAcessoWidget(),
+          : const CadastroWidget(),
       routes: [
         FFRoute(
           name: '_initialize',
           path: '/',
           builder: (context, _) => appStateNotifier.loggedIn
               ? const TelaLoginWidget()
-              : const TelaAcessoWidget(),
+              : const CadastroWidget(),
         ),
         FFRoute(
           name: 'registro_consulta',
@@ -104,11 +105,6 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           name: 'cadastro',
           path: '/cadastro',
           builder: (context, params) => const CadastroWidget(),
-        ),
-        FFRoute(
-          name: 'tela_inicial',
-          path: '/telaInicial',
-          builder: (context, params) => const TelaInicialWidget(),
         ),
         FFRoute(
           name: 'tela_acesso',
@@ -141,24 +137,16 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const ResultadosExamesWidget(),
         ),
         FFRoute(
-          name: 'perfil',
-          path: '/perfil',
-          builder: (context, params) => const PerfilWidget(),
+          name: 'profile',
+          path: '/profile',
+          builder: (context, params) => const ProfileWidget(),
         ),
         FFRoute(
           name: 'historico_exames',
           path: '/historicoExames',
-          builder: (context, params) => HistoricoExamesWidget(categoria: "",),
-        ),
-        FFRoute(
-          name: 'detalhes_medicamentos',
-          path: '/detalhesMedicamentos',
-          builder: (context, params) => const DetalhesMedicamentosWidget(),
-        ),
-        FFRoute(
-          name: 'adicionar_medicamento',
-          path: '/adicionarMedicamento',
-          builder: (context, params) => const AdicionarMedicamentoWidget(),
+          builder: (context, params) => HistoricoExamesWidget(
+            categoria: "",
+          ),
         ),
         FFRoute(
           name: 'detalhes_medicamentoss',
@@ -175,7 +163,7 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
         FFRoute(
           name: 'perfil_glicemia',
           path: '/perfilGlicemia',
-          builder: (context, params) => const PerfilGlicemiaWidget(),
+          builder: (context, params) => const PerfilGlicemiaWidget(data: null,),
         ),
         FFRoute(
           name: 'perfil_pressao',
@@ -208,39 +196,11 @@ GoRouter createRouter(AppStateNotifier appStateNotifier) => GoRouter(
           builder: (context, params) => const AdicionarImcWidget(),
         ),
         FFRoute(
-          name: 'tela_examesCopy',
-          path: '/telaExamesCopy',
-          builder: (context, params) => const TelaExamesCopyWidget(),
+          name: 'adicionar_medicamento',
+          path: '/adicionarMedicamento',
+          builder: (context, params) => const AdicionarMedicamentoWidget(),
         ),
         FFRoute(
-          name: 'tela_examesCopy2',
-          path: '/telaExamesCopy2',
-          builder: (context, params) => const TelaExamesCopy2Widget(),
-        ),
-        FFRoute(
-          name: 'tela_examesCopy3',
-          path: '/telaExamesCopy3',
-          builder: (context, params) => const TelaExamesCopy3Widget(),
-        ),
-        FFRoute(
-          name: 'historico_consulta',
-          path: '/historicoConsulta',
-          builder: (context, params) => HistoricoConsultaWidget(
-            nomeConsulta: params.getParam(
-              'nomeConsulta',
-              ParamType.String,
-            ),
-          ),
-        ),
-        FFRoute(
-          name: 'profile',
-          path: '/profile',
-          builder: (context, params) => const ProfileWidget(),
-        ),
-        FFRoute(
-          name: 'editar_perfil',
-          path: '/editarPerfil',
-          builder: (context, params) => const EditarPerfilWidget(),
           name: 'categoria_exame',
           path: '/categoriaexame',
           builder: (context, params) => const CategoriaExameWidget(),
@@ -414,7 +374,7 @@ class FFRoute {
 
           if (requireAuth && !appStateNotifier.loggedIn) {
             appStateNotifier.setRedirectLocationIfUnset(state.uri.toString());
-            return '/telaAcesso';
+            return '/cadastro';
           }
           return null;
         },
@@ -439,7 +399,7 @@ class FFRoute {
                     ),
                   ),
                 )
-              : PushNotificationsHandler(child: page);
+              : page;
 
           final transitionInfo = state.transitionInfo;
           return transitionInfo.hasTransition

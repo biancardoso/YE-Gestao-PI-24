@@ -1,28 +1,27 @@
-import '/auth/firebase_auth/auth_util.dart';
 import '/flutter_flow/flutter_flow_icon_button.dart';
 import '/flutter_flow/flutter_flow_theme.dart';
 import '/flutter_flow/flutter_flow_util.dart';
 import '/flutter_flow/flutter_flow_widgets.dart';
 import 'package:flutter/material.dart';
-import 'homepage_model.dart';
-export 'homepage_model.dart';
+import 'all_profiles_model.dart';
+export 'all_profiles_model.dart';
 
-class HomepageWidget extends StatefulWidget {
-  const HomepageWidget({super.key});
+class AllProfilesWidget extends StatefulWidget {
+  const AllProfilesWidget({super.key});
 
   @override
-  State<HomepageWidget> createState() => _HomepageWidgetState();
+  State<AllProfilesWidget> createState() => _AllProfilesWidgetState();
 }
 
-class _HomepageWidgetState extends State<HomepageWidget> {
-  late HomepageModel _model;
+class _AllProfilesWidgetState extends State<AllProfilesWidget> {
+  late AllProfilesModel _model;
 
   final scaffoldKey = GlobalKey<ScaffoldState>();
 
   @override
   void initState() {
     super.initState();
-    _model = createModel(context, () => HomepageModel());
+    _model = createModel(context, () => AllProfilesModel());
   }
 
   @override
@@ -40,7 +39,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           : FocusScope.of(context).unfocus(),
       child: Scaffold(
         key: scaffoldKey,
-        backgroundColor: FlutterFlowTheme.of(context).secondaryBackground,
+        backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
         appBar: AppBar(
           backgroundColor: const Color(0xFF729487),
           automaticallyImplyLeading: false,
@@ -49,20 +48,20 @@ class _HomepageWidgetState extends State<HomepageWidget> {
             borderWidth: 1.0,
             buttonSize: 40.0,
             icon: Icon(
-              Icons.person_sharp,
+              Icons.chevron_left_rounded,
               color: FlutterFlowTheme.of(context).secondaryBackground,
               size: 24.0,
             ),
-            onPressed: () async {
-              context.pushNamed('profile');
+            onPressed: () {
+              print('IconButton pressed ...');
             },
           ),
           title: Align(
             alignment: const AlignmentDirectional(0.0, 0.0),
             child: Padding(
-              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 30.0, 0.0),
+              padding: const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 50.0, 0.0),
               child: Text(
-                'YE - Gestão de Saúde',
+                'Aferições',
                 style: FlutterFlowTheme.of(context).headlineMedium.override(
                       fontFamily: 'Outfit',
                       color: Colors.white,
@@ -72,25 +71,7 @@ class _HomepageWidgetState extends State<HomepageWidget> {
               ),
             ),
           ),
-          actions: [
-            FlutterFlowIconButton(
-              borderRadius: 20.0,
-              borderWidth: 1.0,
-              buttonSize: 40.0,
-              icon: Icon(
-                Icons.login_rounded,
-                color: FlutterFlowTheme.of(context).secondaryBackground,
-                size: 24.0,
-              ),
-              onPressed: () async {
-                GoRouter.of(context).prepareAuthEvent();
-                await authManager.signOut();
-                GoRouter.of(context).clearRedirectLocation();
-
-                context.goNamedAuth('tela_acesso', context.mounted);
-              },
-            ),
-          ],
+          actions: const [],
           centerTitle: false,
           elevation: 2.0,
         ),
@@ -98,26 +79,26 @@ class _HomepageWidgetState extends State<HomepageWidget> {
           top: true,
           child: Stack(
             children: [
-              Align(
-                alignment: const AlignmentDirectional(0.0, 0.36),
+              Padding(
+                padding: const EdgeInsetsDirectional.fromSTEB(0.0, 100.0, 0.0, 200.0),
                 child: GridView(
                   padding: EdgeInsets.zero,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 20.0,
+                    crossAxisSpacing: 10.0,
+                    mainAxisSpacing: 10.0,
                     childAspectRatio: 1.0,
                   ),
-                  shrinkWrap: true,
                   scrollDirection: Axis.vertical,
                   children: [
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 0.0, 30.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 0.0, 20.0),
                       child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('medicamentos');
+                        onPressed: () {
+                          print('Button pressed ...');
                         },
-                        text: 'Medicamentos',
+                        text: 'Pressão',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -142,42 +123,12 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 30.0, 30.0),
+                          const EdgeInsetsDirectional.fromSTEB(0.0, 40.0, 10.0, 20.0),
                       child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('registro_consulta');
+                        onPressed: () {
+                          print('Button pressed ...');
                         },
-                        text: 'Consultas',
-                        options: FFButtonOptions(
-                          width: 1.0,
-                          padding: const EdgeInsetsDirectional.fromSTEB(
-                              24.0, 0.0, 24.0, 0.0),
-                          iconPadding: const EdgeInsetsDirectional.fromSTEB(
-                              0.0, 0.0, 0.0, 0.0),
-                          color: const Color(0xFF729487),
-                          textStyle:
-                              FlutterFlowTheme.of(context).titleSmall.override(
-                                    fontFamily: 'Readex Pro',
-                                    color: Colors.white,
-                                    letterSpacing: 0.0,
-                                  ),
-                          elevation: 3.0,
-                          borderSide: const BorderSide(
-                            color: Colors.transparent,
-                            width: 1.0,
-                          ),
-                          borderRadius: BorderRadius.circular(8.0),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding:
-                          const EdgeInsetsDirectional.fromSTEB(30.0, 30.0, 0.0, 30.0),
-                      child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('perfil_glicemia');
-                        },
-                        text: 'Aferições',
+                        text: 'Glicemia',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -202,12 +153,12 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                     ),
                     Padding(
                       padding:
-                          const EdgeInsetsDirectional.fromSTEB(0.0, 30.0, 30.0, 30.0),
+                          const EdgeInsetsDirectional.fromSTEB(10.0, 40.0, 0.0, 20.0),
                       child: FFButtonWidget(
-                        onPressed: () async {
-                          context.pushNamed('historico_exames');
+                        onPressed: () {
+                          print('Button pressed ...');
                         },
-                        text: 'Exames',
+                        text: 'IMC',
                         options: FFButtonOptions(
                           height: 40.0,
                           padding: const EdgeInsetsDirectional.fromSTEB(
@@ -234,25 +185,17 @@ class _HomepageWidgetState extends State<HomepageWidget> {
                 ),
               ),
               Align(
-                alignment: const AlignmentDirectional(0.22, -0.9),
-                child: Container(
-                  width: 373.0,
-                  height: 193.0,
-                  decoration: BoxDecoration(
-                    color: FlutterFlowTheme.of(context).secondaryBackground,
-                  ),
-                  child: Padding(
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 10.0),
-                    child: Text(
-                      'Bem-vindo ao nosso novo aplicativo de gestão de saúde! \nEstamos muito felizes em tê-lo(a) aqui conosco.\n Nosso objetivo é fornecer a você uma ferramenta completa e intuitiva para cuidar da sua saúde e bem-estar.',
-                      textAlign: TextAlign.center,
-                      style: FlutterFlowTheme.of(context).bodyMedium.override(
-                            fontFamily: 'Readex Pro',
-                            fontSize: 18.0,
-                            letterSpacing: 0.1,
-                          ),
-                    ),
+                alignment: const AlignmentDirectional(0.0, -1.0),
+                child: Padding(
+                  padding:
+                      const EdgeInsetsDirectional.fromSTEB(10.0, 20.0, 10.0, 0.0),
+                  child: Text(
+                    'Nessa área estão localizados os botões para coleta das suas aferições. ',
+                    style: FlutterFlowTheme.of(context).bodyMedium.override(
+                          fontFamily: 'Readex Pro',
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                        ),
                   ),
                 ),
               ),

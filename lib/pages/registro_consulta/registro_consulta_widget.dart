@@ -193,43 +193,6 @@ class _RegistroConsultaWidgetState extends State<RegistroConsultaWidget> {
                   ),
                 ),
               ),
-              Align(
-                alignment: const AlignmentDirectional(0.01, 0.78),
-                child: FFButtonWidget(
-                  onPressed: () async {
-                    context.pushNamed(
-                      'detalhes_consulta',
-                      queryParameters: {
-                        'nomeConsulta': serializeParam(
-                          '',
-                          ParamType.String,
-                        ),
-                      }.withoutNulls,
-                    );
-                  },
-                  text: 'Adicionar nova consulta',
-                  options: FFButtonOptions(
-                    height: 40.0,
-                    padding:
-                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
-                    iconPadding:
-                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
-                    color: const Color(0xFF3A514A),
-                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
-                          fontFamily: 'Readex Pro',
-                          color: Colors.white,
-                          fontSize: 18.0,
-                          letterSpacing: 0.0,
-                        ),
-                    elevation: 3.0,
-                    borderSide: const BorderSide(
-                      color: Colors.transparent,
-                      width: 1.0,
-                    ),
-                    borderRadius: BorderRadius.circular(8.0),
-                  ),
-                ),
-              ),
               Padding(
                 padding: const EdgeInsetsDirectional.fromSTEB(0.0, 250.0, 0.0, 0.0),
                 child: StreamBuilder<List<ConsultasRecord>>(
@@ -431,6 +394,43 @@ class _RegistroConsultaWidgetState extends State<RegistroConsultaWidget> {
                       },
                     );
                   },
+                ),
+              ),
+              Align(
+                alignment: const AlignmentDirectional(0.01, 0.78),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    context.pushNamed(
+                      'detalhes_consulta',
+                      queryParameters: {
+                        'nomeConsulta': serializeParam(
+                          '',
+                          ParamType.String,
+                        ),
+                      }.withoutNulls,
+                    );
+                  },
+                  text: 'Adicionar nova consulta',
+                  options: FFButtonOptions(
+                    height: 40.0,
+                    padding:
+                        const EdgeInsetsDirectional.fromSTEB(24.0, 0.0, 24.0, 0.0),
+                    iconPadding:
+                        const EdgeInsetsDirectional.fromSTEB(0.0, 0.0, 0.0, 0.0),
+                    color: const Color(0xFF3A514A),
+                    textStyle: FlutterFlowTheme.of(context).titleSmall.override(
+                          fontFamily: 'Readex Pro',
+                          color: Colors.white,
+                          fontSize: 18.0,
+                          letterSpacing: 0.0,
+                        ),
+                    elevation: 3.0,
+                    borderSide: const BorderSide(
+                      color: Colors.transparent,
+                      width: 1.0,
+                    ),
+                    borderRadius: BorderRadius.circular(8.0),
+                  ),
                 ),
               ),
             ],

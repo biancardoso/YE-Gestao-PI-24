@@ -1,8 +1,8 @@
 import '/flutter_flow/flutter_flow_util.dart';
-import 'historico_consulta_widget.dart' show HistoricoConsultaWidget;
+import 'all_profiles_widget.dart' show AllProfilesWidget;
 import 'package:flutter/material.dart';
 
-class HistoricoConsultaModel extends FlutterFlowModel<HistoricoConsultaWidget> {
+class AllProfilesModel extends FlutterFlowModel<AllProfilesWidget> {
   ///  State fields for stateful widgets in this page.
 
   final unfocusNode = FocusNode();
